@@ -1,0 +1,56 @@
+Aakash Ahamed
+Nov 2, 2017
+Stanford University
+Python, gdal, earth engine, tensorflow environment install setup
+
+# Commands to duplicate this environment
+
+# Prerequisite: Anaconda 2, python 2.x
+
+# First make sure you're using python2.x
+vi ~/. bash profile
+'''
+Comment out python 3 path
+uncomment python 2 path
+close all terminal windows and re open
+run "which python" or "python --v" to ensure python 2.x is running
+'''
+
+# Make a conda virtualenv
+
+conda create --name machine_learning_python2 --clone 2015-geospatial # clone from a previous environment loaded with gdal
+
+
+source activate machine_learning_python2
+
+# Now you should see (machine_learning_python2) prepended to your terminal prompt
+
+Create adn go to a folder
+mkdir /Users/aakashahamed/Desktop/machine_learning/FP
+cd /Users/aakashahamed/Desktop/machine_learning/FP
+
+# Libs	
+pip install 'pyOpenSSL>=0.11'
+
+pip install earthengine-api
+
+python -c "import ee; ee.Initialize()" # see that the install works
+
+earthengine authenticate # and supply ee credentials
+
+# Install tensorflow - instructions from here: https://www.tensorflow.org/install/install_mac#the_url_of_the_tensorflow_python_package
+
+pip install --ignore-installed --upgrade \
+ https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.4.0-py2-none-any.whl
+
+# validate the install - enter python shell (type "python") and do the following:
+# Python
+import tensorflow as tf
+hello = tf.constant('Hello, TensorFlow!')
+sess = tf.Session()
+print(sess.run(hello))
+
+# If "Hellow Tensorflow" prints to the terminal you're good
+
+# Now install gdal and osgeo
+conda install -c conda-forge gdal 
